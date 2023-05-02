@@ -1,0 +1,44 @@
+
+:root{
+    --min-nav:hsl(257, 27%, 26%);
+}
+
+.shorten-desktop{
+    background-image: url('images/bg-shorten-desktop.svg');
+    height: 5rem;
+    width: 100%;
+    background-repeat: no-repeat;
+}
+.shorten-mobile{
+    background-image: url('images/bg-shorten-mobile.svg');
+    z-index: 1;
+    height: 3rem;
+    width: 100%;
+    background-position: center;
+    background-color: #574b74;
+}
+
+.boost-desktop{
+    background-image: url('images/bg-boost-desktop.svg');
+    z-index: 1;
+    height: 3rem;
+    width: 100%;
+    background-position: center;
+    background-color: #574b74;
+    background-size:10rem;
+}
+
+
+.boost-mobile{
+    background-image: url('images/bg-boost-mobile.svg');
+    z-index: 1;
+    height: 3rem;
+    width: 100%;
+    background-position: left;
+    background-color: #574b74;
+    background-size:10rem;
+
+}
+.min{
+    background-color: var(--min-nav);
+}
