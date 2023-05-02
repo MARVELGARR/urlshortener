@@ -12,7 +12,7 @@ function Hero() {
 
 
   return (
-    <main className="flex p-4 pr-4 flex-col justify-center items-center">
+    <main className="flex gap-10 p-4 pr-4 flex-col justify-center items-center">
         <section className="flex flex-col-reverse items-center">
             <div className='flex flex-col items-center gap-5'>
                 <div className=" font-extrabold text-4xl text-center">{section1.h1}</div>
@@ -21,18 +21,18 @@ function Hero() {
             </div>
             <img className="ml-28 w-96 " src={HeroImage} alt="Hero image"/>
         </section>
-        <section className="">
-            <div className="shorten-desktop hidden">
+        <section className="w-full h-32">
+            <div className="shorten-desktop hidden ">
                 <form >
                     <input type="text"/>
-                    <button type="submit" className="">{mainApp.btn2}</button>
+                    <button type="submit" className="bg-cyan-400 w-44 text-center p-2 rounded-xl text-lg font-bold text-white">{mainApp.btn2}</button>
                 </form>
             </div>
             <div className='hidden'></div>
-            <div className='shorten-mobile'>
-                <form >
-                    <input type="text"/>
-                    <button type="submit" className="">{mainApp.btn2}</button>
+            <div className='shorten-mobile h-full rounded-lg'>
+                <form className="flex flex-col pl-5 pr-5 p-3 h-full gap-5">
+                    <input type="text" className="rounded-lg h-10" />
+                    <button type="submit" className="bg-cyan-400 w-full h-10 text-center p-1 rounded-lg text-lg font-bold text-white">{mainApp.btn2}</button>
                 </form>
             </div>
             <div className=''></div>
@@ -40,8 +40,8 @@ function Hero() {
 
         <section>
             <div className="">
-                <h1 className="">{section2.h1}</h1>
-                <p className="">{section2.p}</p>
+                <h1 className="text-3xl font-bold text-center">{section2.h1}</h1>
+                <p className="text-center text-lg text-gray-400 tracking-wider leading-7">{section2.p}</p>
             </div>
             <div className="">
                 <article className=''>

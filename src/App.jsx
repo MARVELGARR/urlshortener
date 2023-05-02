@@ -8,7 +8,9 @@ function App() {
   return (
     <>
     <Layout>
-      <Hero/>
+      <div className="-z-10">
+        <Hero/>
+      </div>
     </Layout>
   
     </>

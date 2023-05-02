@@ -20,10 +20,10 @@ function Header() {
     }
 
   return (
-    <div>
-        <div className="relative text-white text-center">
+    <div className=''>
+        <div className=" text-white text-center">
 
-            <div className=" flex justify-between mt-4">
+            <div className="pl-5 flex justify-between mt-4">
                 <img 
                 src="/images/logo.svg" 
                 className=" object-fit w-28 h-7"
@@ -51,10 +51,10 @@ function Header() {
         </div>
         <div className=" w-10 h-10 ">
             {isOpen ? (<button onClick={handleMenu}>
-                <img className="absolute h-10 w-10 top-2 right-0 " src="/images/close.svg"/>
+                <img className="absolute h-10 w-10 top-2 right-10 " src="/images/close.svg"/>
             </button>) :
             (<button onClick={handleMenu}>
-                <img className="absolute h-10 w-10 top-2 right-0" src="/images/open.svg"/>
+                <img className="absolute h-10 w-10 top-2 right-10" src="/images/open.svg"/>
             </button>)}
         </div>
     </div>

@@ -4,7 +4,7 @@ import Footer from './Footer'
 function Layout({children}) {
   return (
     <>
-      <div className="h-15">
+      <div className="sticky top-0 z-10 bg-white">
 
         <Header/>
       </div>
