@@ -14,21 +14,21 @@ function Hero() {
   return (
     <main className="flex p-4 pr-4 flex-col justify-center items-center">
         <section className="flex flex-col-reverse items-center">
-            <div className=''>
+            <div className='flex flex-col items-center gap-5'>
                 <div className=" font-extrabold text-4xl text-center">{section1.h1}</div>
                 <div className="text-center text-lg text-gray-400 tracking-wider leading-7 mt-2">{section1.p}</div>
-                <div className="">{section1.btn1}</div>
+                <div className=" bg-cyan-400 w-44 text-center p-2 rounded-xl text-lg font-bold text-white">{section1.btn1}</div>
             </div>
             <img className="ml-28 w-96 " src={HeroImage} alt="Hero image"/>
         </section>
-        <section>
+        <section className="">
             <div className="shorten-desktop hidden">
                 <form >
                     <input type="text"/>
                     <button type="submit" className="">{mainApp.btn2}</button>
                 </form>
             </div>
-            <div className=''></div>
+            <div className='hidden'></div>
             <div className='shorten-mobile'>
                 <form >
                     <input type="text"/>
