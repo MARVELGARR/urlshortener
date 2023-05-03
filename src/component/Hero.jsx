@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {v4 as uuid} from "uuid";
 import HeroImage from "/images/illustration-working.svg"
 import {section1} from "./siteData"
@@ -9,7 +9,36 @@ import "../App.css"
 
 function Hero() {
 
+    const [text, setText]= useState([]);
+    const [message, setMessage]= useState("");
+    const [link, setLink]= useState([]);
 
+    const api = `https://api.shrtco.de/v2/shorten?url=${text}`
+    
+    async function getLink (){
+        const req = await fetch(api);
+        const res = await res.json();
+        setLink(res);
+    }
+
+    const handleTyping = (e) =>{
+        let value = e.target.value;
+        setText(value);
+        console.log(text);
+    }
+    const handleError = (text, message) =>{
+        if(text == ""){
+            setMessage(message);
+        }
+        else{
+            setMessage("");
+        }
+    }
+    const handleSubmit = (e) =>{
+        e.preventDefault();
+        handleError(text, "Please add a link")
+        getLink();
+    }
 
   return (
     <main className="flex gap-10 p-4 pr-4 flex-col justify-center items-center">
@@ -21,21 +50,47 @@ function Hero() {
             </div>
             <img className="ml-28 w-96 " src={HeroImage} alt="Hero image"/>
         </section>
-        <section className="w-full h-32">
+        <section className="w-full h-36">
             <div className="shorten-desktop hidden ">
-                <form >
-                    <input type="text"/>
+                <form 
+                    onSubmit={handleSubmit}
+                >
+                    <input
+                        type="text" 
+                        onChange={handleTyping} 
+                        className=" text-lg placeholder:ml-5"
+                        placeholder='Shorten a link here...'
+                    />
+                    <div className=" text-red-900 italic">{message}</div>
                     <button type="submit" className="bg-cyan-400 w-44 text-center p-2 rounded-xl text-lg font-bold text-white">{mainApp.btn2}</button>
                 </form>
             </div>
             <div className='hidden'></div>
-            <div className='shorten-mobile h-full rounded-lg'>
-                <form className="flex flex-col pl-5 pr-5 p-3 h-full gap-5">
-                    <input type="text" className="rounded-lg h-10" />
-                    <button type="submit" className="bg-cyan-400 w-full h-10 text-center p-1 rounded-lg text-lg font-bold text-white">{mainApp.btn2}</button>
+            <div className='shorten-mobile h-full rounded-lg flex flex-col'>
+                <form
+                    onSubmit={handleSubmit} 
+                    className="flex flex-col pl-5 pr-5 p-3 h-full gap-5"
+                >   
+                    <div className='flex flex-col '>
+
+                        <input type="text"
+                            
+                            className="rounded-lg mt-1 mb-1 h-10 text-lg pl-5 " 
+                            onChange={handleTyping}
+                            placeholder="Shorten a link here..."
+                        />
+                        <div className=" h-1  text-red-400 italic">{message}</div>
+                    </div>
+                    <button type="submit" className="bg-cyan-400 cursor-pointer w-full h-10 text-center p-1 rounded-lg text-lg font-bold text-white">{mainApp.btn2}</button>
                 </form>
             </div>
-            <div className=''></div>
+            <div className=''>{ link.map((item)=>{
+                return (
+                    <>
+                        <div>{item.getLink}</div>
+                    </>
+                )
+            })}</div>
         </section>
 
         <section>
