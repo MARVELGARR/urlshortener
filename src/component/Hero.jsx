@@ -39,37 +39,37 @@ function Hero() {
         </section>
 
         <section>
-            <div className="">
+            <div className="flex flex-col gap-4">
                 <h1 className="text-3xl font-bold text-center">{section2.h1}</h1>
                 <p className="text-center text-lg text-gray-400 tracking-wider leading-7">{section2.p}</p>
             </div>
-            <div className="">
-                <article className=''>
+            <div className="flex gap-16 flex-col justify-center items-center">
+                <article className='relative mt-10 text-center gap-5    flex flex-col justify-center items-center'>
                     <img
                     src={section2.articles[0].img} 
-                    className="" />
+                    className="articleImg " />
                     <div className="">
                         <div className="">{section2.articles[0].h3}</div>
                         <div className="">{section2.articles[0].p}</div>
 
                     </div>
                 </article>
-                <article className=''>
-                <img
+                <article className='relative text-center gap-5 flex flex-col justify-center items-center'>
+                    <img
                     src={section2.articles[1].img} 
-                    className="" />
+                    className="articleImg" />
                     <div className="">
-                        <div className="">{section2.articles[1].h3}</div>
+                        <div className="me">{section2.articles[1].h3}</div>
                         <div className="">{section2.articles[1].p}</div>
 
                     </div>
                 </article>
-                <article className=''>
-                <img
+                <article className='relative text-center gap-5 flex flex-col justify-center items-center'>
+                    <img
                     src={section2.articles[2].img} 
-                    className="" />
+                    className="articleImg" />
                     <div className="">
-                        <div className="">{section2.articles[2].h3}</div>
+                        <div className="me">{section2.articles[2].h3}</div>
                         <div className="">{section2.articles[2].p}</div>
 
                     </div>
@@ -77,8 +77,11 @@ function Hero() {
             </div>
         </section>
         <section>
-            <div className="boost-desktop hidden"></div>
-            <div className="boost-mobile "></div>
+            <div className="boost-desktop hidden">cxcx</div>
+            <div className="boost-mobile flex flex-col justify-center gap-5 items-center">
+                <h1 className="text-white font-bold text-3xl">Boost your links today</h1>
+                <div className=" bg-cyan-400 rounded-xl p-2 flex justify-center items-center font-bold w-44">Get Started</div>
+            </div>
         </section>
     </main>
   )
