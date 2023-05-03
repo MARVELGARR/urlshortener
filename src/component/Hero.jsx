@@ -17,7 +17,7 @@ function Hero() {
     
     async function getLink (){
         const req = await fetch(api);
-        const res = await res.json();
+        const res = await req.json();
         setLink(res);
     }
 
@@ -84,16 +84,17 @@ function Hero() {
                     <button type="submit" className="bg-cyan-400 cursor-pointer w-full h-10 text-center p-1 rounded-lg text-lg font-bold text-white">{mainApp.btn2}</button>
                 </form>
             </div>
-            <div className=''>{ link.map((item)=>{
+            <div className='bg-green-300 h-20'>{ Object.values(link).map((item)=>{
                 return (
-                    <>
-                        <div>{item.getLink}</div>
-                    </>
+                    <div key={uuid()}>
+                        <div key={uuid()} className="">{item.original_link}</div>
+                        <div key={uuid()}>{item.short_link}</div>
+                    </div>
                 )
             })}</div>
         </section>
 
-        <section>
+        <section className='h-aut0'>
             <div className="flex flex-col gap-4">
                 <h1 className="text-3xl font-bold text-center">{section2.h1}</h1>
                 <p className="text-center text-lg text-gray-400 tracking-wider leading-7">{section2.p}</p>
