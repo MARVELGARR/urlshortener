@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {v4 as uuid} from "uuid";
 import HeroImage from "/images/illustration-working.svg"
 import {section1} from "./siteData"
@@ -12,17 +12,30 @@ function Hero() {
     const [text, setText]= useState([]);
     const [message, setMessage]= useState("");
     const [link, setLink]= useState([]);
-    const [coppied, setIsCoppied]= useState(false);
-    const [list, setList]= useState([]);
+    const [coppied, setIsCoppied]= useState(null);
+    const [list, setList]= useState([{id:'', L1:"", L2:""}]);
     const api = `https://api.shrtco.de/v2/shorten?url=${text}`
     
+    useEffect(()=>{
+        const storedList = localStorage.getItem('list');
+        if (storedList) {
+          setList(JSON.parse(storedList));
+        }
+    }, [])
+
+    const handleCopy = (link)=>{
+        navigator.clipboard.writeText(link);
+        setIsCoppied(link) 
+    }
+
     async function getLink (){
         const req = await fetch(api);
         const res = await req?.json();
         setLink(res);
-        if(list.length < 3){
+        if(list.length <= 3){
 
-            setList([...list, res.result])
+            setList([...list, {id:res.result.code, L1:res.result.short_link, L2:res.result.original_link}]);
+            localStorage.setItem('list', JSON.stringify(list));
         }
     }
 
@@ -42,7 +55,6 @@ function Hero() {
         e.preventDefault();
         handleError(text, "Please add a link")
         getLink();
-        setLink
         setText("");
 
     }
@@ -93,12 +105,16 @@ function Hero() {
                 </form>
             </div>
             <div className='bg-white flex flex-col gap7'>
-                { Object.values(list).map((item) => (
-                  item && item.short_link && (  <div key={uuid()} className="flex flex-col gap-3 justify-center p-4">
-                        <div>{item.original_link.slice(0, 40) + "..."}</div>
+                { list.map((item) => (
+                  item && item.L1 && (  <div key={item.code} className="flex flex-col gap-3 justify-center p-4">
+                        <div>{item.L1.slice(0, 40) + "..."}</div>
                         <hr />
-                        <div className="text-cyan-400">{item.short_link}</div>
-                        <div className="bg-cyan-400 font-bold text-lg text-white flex items-center p-2 rounded-xl justify-center">copy</div>
+                        <div className="text-cyan-400">{item.L2}</div>
+                        <button
+                            type="button"
+                            onClick={()=>handleCopy(item.L1)} 
+                            className={`${coppied===item.L1 ? " bg-purple-950":"bg-cyan-400"} font-bold text-lg text-white flex items-center p-2 rounded-xl justify-center`}
+                        >{coppied === item.L1 ? "coppied!" : "copy"}</button>
                     </div> )
                 ))}
             </div>
