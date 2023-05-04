@@ -12,19 +12,23 @@ function Hero() {
     const [text, setText]= useState([]);
     const [message, setMessage]= useState("");
     const [link, setLink]= useState([]);
-
+    const [coppied, setIsCoppied]= useState(false);
+    const [list, setList]= useState([]);
     const api = `https://api.shrtco.de/v2/shorten?url=${text}`
     
     async function getLink (){
         const req = await fetch(api);
-        const res = await req.json();
+        const res = await req?.json();
         setLink(res);
+        if(list.length < 3){
+
+            setList([...list, res.result])
+        }
     }
 
     const handleTyping = (e) =>{
         let value = e.target.value;
         setText(value);
-        console.log(text);
     }
     const handleError = (text, message) =>{
         if(text == ""){
@@ -38,6 +42,9 @@ function Hero() {
         e.preventDefault();
         handleError(text, "Please add a link")
         getLink();
+        setLink
+        setText("");
+
     }
 
   return (
@@ -50,13 +57,14 @@ function Hero() {
             </div>
             <img className="ml-28 w-96 " src={HeroImage} alt="Hero image"/>
         </section>
-        <section className="w-full h-36">
+        <section className="w-full h-aut0">
             <div className="shorten-desktop hidden ">
                 <form 
                     onSubmit={handleSubmit}
                 >
                     <input
                         type="text" 
+                        value={text}
                         onChange={handleTyping} 
                         className=" text-lg placeholder:ml-5"
                         placeholder='Shorten a link here...'
@@ -74,7 +82,7 @@ function Hero() {
                     <div className='flex flex-col '>
 
                         <input type="text"
-                            
+                            value={text}
                             className="rounded-lg mt-1 mb-1 h-10 text-lg pl-5 " 
                             onChange={handleTyping}
                             placeholder="Shorten a link here..."
@@ -84,14 +92,16 @@ function Hero() {
                     <button type="submit" className="bg-cyan-400 cursor-pointer w-full h-10 text-center p-1 rounded-lg text-lg font-bold text-white">{mainApp.btn2}</button>
                 </form>
             </div>
-            <div className='bg-green-300 h-20'>{ Object.values(link).map((item)=>{
-                return (
-                    <div key={uuid()}>
-                        <div key={uuid()} className="">{item.original_link}</div>
-                        <div key={uuid()}>{item.short_link}</div>
-                    </div>
-                )
-            })}</div>
+            <div className='bg-white flex flex-col gap7'>
+                { Object.values(list).map((item) => (
+                  item && item.short_link && (  <div key={uuid()} className="flex flex-col gap-3 justify-center p-4">
+                        <div>{item.original_link.slice(0, 40) + "..."}</div>
+                        <hr />
+                        <div className="text-cyan-400">{item.short_link}</div>
+                        <div className="bg-cyan-400 font-bold text-lg text-white flex items-center p-2 rounded-xl justify-center">copy</div>
+                    </div> )
+                ))}
+            </div>
         </section>
 
         <section className='h-aut0'>
