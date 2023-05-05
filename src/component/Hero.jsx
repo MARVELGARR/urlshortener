@@ -69,7 +69,7 @@ function Hero() {
             </div>
             <img className=" md:w-2/4 ml-28 w-96 " src={HeroImage} alt="Hero image"/>
         </section>
-        <section className=" absolute w-full h-aut0">
+        <section className="  w-full h-aut0">
             <div className="md:block    shorten-desktop hidden ">
                 <form
                     className="md:items-center md:justify-between  flex flex-row pl-5 pr-5 p-3 h-full gap-5" 
