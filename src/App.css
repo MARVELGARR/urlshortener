@@ -5,8 +5,9 @@
 
 .shorten-desktop{
     background-image: url('images/bg-shorten-desktop.svg');
-    height: 5rem;
+    height: 7rem;
     width: 100%;
+    background-color: #574b74;
     background-repeat: no-repeat;
 }
 .shorten-mobile{
@@ -44,18 +45,19 @@
 .articleImg{
     background-color:#574b74;
     border-radius:50% ;
-    padding: 0.5rem
+    padding: 0.5rem;
+    position: absolute;
+    top: -2em;
 }
-.me::before{
-    content:"";
-    height: 3em;
+.me{
+    height: 5em;
     width:0.4em;
     background-color: aqua;
-    display: block;
     position: absolute;
-    top:-3em;
+    top:-5em;
     left:10.5em
 }
+
 svg path{
     fill: aliceblue;
 }
