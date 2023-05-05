@@ -58,6 +58,14 @@ function Hero() {
         setText("");
 
     }
+    const handleDelete = (key) =>{
+        const updatedList = list.filter((item)=>{
+            return item.code !== key;
+        })
+        setList(updatedList)
+        localStorage.setItem('list', JSON.stringify(updatedList));
+        localStorage.removeItem(key);
+    }
 
   return (
     <main className=" md:p-20 bg-slate-300/50 flex gap-10 p-4 pr-4 flex-col justify-center items-center">
@@ -69,7 +77,7 @@ function Hero() {
             </div>
             <img className=" md:w-2/4 ml-28 w-96 " src={HeroImage} alt="Hero image"/>
         </section>
-        <section className="  w-full h-aut0">
+        <section className=" bg-white w-full h-aut0">
             <div className="md:block    shorten-desktop hidden ">
                 <form
                     className="md:items-center md:justify-between  flex flex-row pl-5 pr-5 p-3 h-full gap-5" 
@@ -119,6 +127,12 @@ function Hero() {
                             onClick={()=>handleCopy(item.L1)} 
                             className={`md:w-44 md:rounded-lg    ${coppied===item.L1 ? " bg-purple-950":"bg-cyan-400"} font-bold text-lg text-white flex items-center p-2 rounded-xl justify-center`}
                         >{coppied === item.L1 ? "coppied!" : "copy"}</button>
+                        <button
+                            onClick={()=>handleDelete(item.code)} 
+                            className="lg:block bg-red-400 lg:w-28 h-10 rounded-lg text-white "
+                        >
+                            Delet
+                        </button>
                     </div> )
                 ))}
             </div>
