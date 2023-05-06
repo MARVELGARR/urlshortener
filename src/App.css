@@ -20,12 +20,13 @@
 
 .boost-desktop{
     background-image: url('images/bg-boost-desktop.svg');
-    z-index: 1;
-    height: 3rem;
+    height: 15rem;
     width: 100vw;
     background-position: center;
     background-color: #574b74;
-    background-size:10rem;
+    background-size:100rem;
+    background-repeat: no-repeat;
+    margin-bottom:-82px;
 }
 
 

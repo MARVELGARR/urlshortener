@@ -60,7 +60,8 @@ function Hero() {
     }
     const handleDelete = (key) =>{
         const updatedList = list.filter((item)=>{
-            return item.code !== key;
+            return item.id!== key;
+            
         })
         setList(updatedList)
         localStorage.setItem('list', JSON.stringify(updatedList));
@@ -69,7 +70,7 @@ function Hero() {
 
   return (
     <main className=" md:p-20 bg-slate-300/50 flex gap-10 p-4 pr-4 flex-col justify-center items-center">
-        <section className="bg-white md:flex-row md:h-72     flex flex-col-reverse items-center">
+        <section className="bg-white md:pt-10 md:pl-16 md:pr-16 md:pb-10 md:flex-row md:h-72     flex flex-col-reverse items-center">
             <div className='md:items-start md:w-2/4  flex flex-col items-center gap-5'>
                 <div className="md:text-5xl md:text-left    font-extrabold text-4xl text-center">{section1.h1}</div>
                 <div className="md:text-left text-center text-lg text-gray-400 tracking-wider leading-7 mt-2">{section1.p}</div>
@@ -113,7 +114,7 @@ function Hero() {
                     <button type="submit" className="bg-cyan-400 cursor-pointer w-full h-10 text-center p-1 rounded-lg text-lg font-bold text-white">{mainApp.btn2}</button>
                 </form>
             </div>
-            <div className='md:mt-7    md:bg-inherit bg-white flex flex-col gap-7 '>
+            <div className='md:mt-7  gap-4  md:bg-inherit bg-white flex flex-col md:gap-7 '>
                 { list.map((item) => (
                   item && item.L1 && (  <div key={item.code} className=" md:bg-white   md:flex-row md:justify-evenly flex flex-col gap-3 justify-center p-4">
                         <div className="md:flex md:gap-20 md:flex-row-reverse">
@@ -128,7 +129,7 @@ function Hero() {
                             className={`md:w-44 md:rounded-lg    ${coppied===item.L1 ? " bg-purple-950":"bg-cyan-400"} font-bold text-lg text-white flex items-center p-2 rounded-xl justify-center`}
                         >{coppied === item.L1 ? "coppied!" : "copy"}</button>
                         <button
-                            onClick={()=>handleDelete(item.code)} 
+                            onClick={()=>handleDelete(item.id)} 
                             className="lg:block bg-red-400 lg:w-28 h-10 rounded-lg text-white "
                         >
                             Delet
@@ -177,8 +178,11 @@ function Hero() {
             </div>
         </section>
         <section>
-            <div className="boost-desktop hidden">cxcx</div>
-            <div className="boost-mobile flex flex-col justify-center gap-5 items-center">
+            <div className="boost-desktop md:flex md:gap-5 flex-col justify-center items-center  hidden">
+                <h1 className=" text-white font-bold text-3xl">Boost your links today</h1>
+                <div className=" bg-cyan-400 rounded-xl p-2 flex justify-center items-center font-bold w-44">Get Started</div> 
+            </div>
+            <div className="md:hidden    boost-mobile flex flex-col justify-center gap-5 items-center">
                 <h1 className="text-white font-bold text-3xl">Boost your links today</h1>
                 <div className=" bg-cyan-400 rounded-xl p-2 flex justify-center items-center font-bold w-44">Get Started</div>
             </div>
