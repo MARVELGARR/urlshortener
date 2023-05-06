@@ -2,7 +2,9 @@
 :root{
     --min-nav:hsl(257, 27%, 26%);
 }
-
+body{
+    font-family: 'Poppins', sans-serif;
+}
 .shorten-desktop{
     background-image: url('images/bg-shorten-desktop.svg');
     height: 7rem;
